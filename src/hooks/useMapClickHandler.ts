@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import "ol/ol.css";
 import Map from "ol/Map";
-import { MAP_CONFIG } from "../constants/initialMapConst.ts";
+import { MAP_CONFIG } from "../constants/initialMapConst";
 import { MapBrowserEvent } from "ol";
 
 export const useMapClickHandler = (map: Map | null, isReady: boolean) => {

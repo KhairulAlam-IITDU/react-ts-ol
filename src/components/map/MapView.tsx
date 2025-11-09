@@ -1,15 +1,14 @@
-import React, { useRef } from "react";
+import React from "react";
 import "ol/ol.css";
-import { useMapInitialization } from "../../hooks/useMapInitialization.ts";
-import { useMapClickHandler } from "../../hooks/useMapClickHandler.ts";
 
-const MapView: React.FC = () => {
-    const mapRef = useRef<HTMLDivElement | null>(null);
-    const {map, isMapReady} = useMapInitialization(mapRef);
+interface MapViewProps {
+    mapRef: React.RefObject<HTMLDivElement | null>;
+}
 
-    useMapClickHandler(map, isMapReady);
-
-    return <div ref={mapRef} style={{ width: "100%", height: "400px" }} />;
+export const MapView: React.FC<MapViewProps> = ({ mapRef }) => {
+    return (
+        <div className="map-container">
+            <div ref={mapRef} className="map" />
+        </div>
+    );
 };
-
-export default MapView;
