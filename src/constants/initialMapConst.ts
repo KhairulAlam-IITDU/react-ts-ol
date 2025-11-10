@@ -1,11 +1,17 @@
+import { fromLonLat } from "ol/proj";
 import OSM from "ol/source/OSM";
 import XYZ from "ol/source/XYZ";
-import type { Drone, LayerType } from "../types";
-import { fromLonLat } from "ol/proj";
+import type { LayerType, Drone, GeoJSONConfig } from "../types";
+
+// export const MAP_CONFIG = {
+//     initialCenter: fromLonLat([10.7522, 59.9139]), // Oslo
+//     initialZoom: 5,
+//     animationDuration: 500,
+// };
 
 export const MAP_CONFIG = {
-    initialCenter: fromLonLat([10.7522, 59.9139]), // Oslo
-    initialZoom: 5,
+    initialCenter: fromLonLat([0, 20]), // Center of world
+    initialZoom: 2, // Zoom out to see multiple countries
     animationDuration: 500,
 };
 
@@ -48,3 +54,33 @@ export const MOCK_PHOTOS = (droneId: number) => [
     { id: 4, url: `https://picsum.photos/200/150?random=${droneId}4`, timestamp: "25 min ago" },
     { id: 5, url: `https://picsum.photos/200/150?random=${droneId}5`, timestamp: "1 hour ago" },
 ];
+
+// GeoJSON Configuration - Using public data for testing
+export const GEOJSON_CONFIG: GeoJSONConfig = {
+    url: 'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson',
+    styleProperty: 'POP_EST',
+    colorScale: [
+        { value: 1000000000, color: '#800026' },
+        { value: 500000000, color: '#BD0026' },
+        { value: 200000000, color: '#E31A1C' },
+        { value: 100000000, color: '#FC4E2A' },
+        { value: 50000000, color: '#FD8D3C' },
+        { value: 20000000, color: '#FEB24C' },
+        { value: 10000000, color: '#FED976' },
+        { value: 0, color: '#FFEDA0' },
+    ]
+};
+
+export const GEOJSON_LEGEND = {
+    title: 'Population Estimate',
+    items: [
+        { label: '1B+', color: '#8c2d04' },
+        { label: '500M+', color: '#d94801' },
+        { label: '100M+', color: '#f16913' },
+        { label: '50M+', color: '#fd8d3c' },
+        { label: '20M+', color: '#fdae6b' },
+        { label: '10M+', color: '#fdd0a2' },
+        { label: '5M+', color: '#fee6ce' },
+        { label: '<5M', color: '#fff5eb' },
+    ]
+};

@@ -16,3 +16,14 @@ export interface LayerType {
     name: string;
     source: () => any;
 }
+
+// New GeoJSON types
+export interface GeoJSONFeatureProperties {
+    [key: string]: any;
+}
+
+export interface GeoJSONConfig {
+    url: string;
+    styleProperty?: string;
+    colorScale?: { value: number; color: string }[];
+}
